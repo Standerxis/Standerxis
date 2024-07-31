@@ -1,1 +1,31 @@
+-- Script para fazer todos os jogadores pular
+-- Coloque este script em ServerScriptService
+
+local Players = game:GetService("Players")
+
+-- Função para fazer um jogador pular
+local function makePlayerJump(player)
+    local character = player.Character
+    if character and character:FindFirstChild("Humanoid") then
+        local humanoid = character.Humanoid
+        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+        humanoid:Move(Vector3.new(0, 50, 0))
+    end
+end
+
+-- Função principal para pular todos os jogadores
+local function makeAllPlayersJump()
+    for _, player in ipairs(Players:GetPlayers()) do
+        makePlayerJump(player)
+    end
+end
+
+-- Conectar a função ao evento que você quiser. Aqui usamos uma chamada direta para fins de demonstração.
+makeAllPlayersJump()
+
+-- Opcional: Para pular todos os jogadores periodicamente, você pode usar o seguinte:
+-- while true do
+--     makeAllPlayersJump()
+--     wait(5) -- espera 5 segundos antes de fazer todos pularem novamente
+-- end
 
